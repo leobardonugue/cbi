@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :products
+  resources :classifications
   devise_for :users
   root 'home#index'
 
