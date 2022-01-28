@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :prices
+  resources :providers
   resources :clients
   resources :products
   resources :classifications
