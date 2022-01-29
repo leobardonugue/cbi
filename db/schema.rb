@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220127034159) do
+ActiveRecord::Schema.define(version: 20220128183109) do
 
   create_table "classifications", force: :cascade do |t|
     t.string   "importance"
@@ -53,6 +53,28 @@ ActiveRecord::Schema.define(version: 20220127034159) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "shop_id"
+    t.integer  "stock"
+    t.integer  "initial_existence"
+    t.integer  "purchase_price"
+    t.integer  "sale_price"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
+  add_index "purchases", ["shop_id"], name: "index_purchases_on_shop_id"
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "name"
+    t.string   "addres"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
