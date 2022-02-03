@@ -22,8 +22,63 @@
     <%= f.label :name %><br>
     <%= f.text_field :name , :class=>"form-control" %>
   </div>
-  </div>  
+  </div> 
+  <div class="col">
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description , :class=>"form-control" %>
   </div>
+  </div> 
+
+ <div class="col">
+  <div class="field">
+  <%= f.label :shop_id %>
+  <%= f.collection_select :shop_id , Shop.order(:name), :id, :name,  {}, :class=>"form-select" %>
+  </div></div>
+
+  </div>
+
+  <div class="row">
+  <div class="col">
+  <div class="field">
+  <%= f.label :purchase_price %>
+  <%= f.text_field :purchase_price , :class=>"form-control"%>
+  </div>
+  </div>
+
+  <div class="col">
+  <div class="field">
+  <%= f.label :price %><br>
+  <%= f.text_field :price, :class=>"form-control" %>
+  </div>
+  </div> 
+  <div class="col">
+  <div class="field">
+    <%= f.label :initialstock %><br>
+    <%= f.text_field :initialstock , :class=>"form-control" %>
+  </div>
+  </div> 
+  </div>
+
+<div class="row">
+<!---->
+  <div class="col">
+  <div class="field">
+  <%= f.label :category_id %>
+  <%= f.collection_select :category_id , Category.order(:category), :id, :category,  {}, :class=>"form-select" %>
+  </div></div>
+
+
+
+  <!---->
+  <div class="col">
+  <div class="field">
+  <%= f.label :provider_id %>
+  <%= f.collection_select :provider_id , Provider.order(:name) , :id , :name , {} , :class=>"form-select" %>
+  </div>
+  </div>
+</div>
+  
 
   <div class="row">
   <div class="col">

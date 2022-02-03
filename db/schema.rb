@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220128183109) do
+ActiveRecord::Schema.define(version: 20220203184409) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "classifications", force: :cascade do |t|
     t.string   "importance"
@@ -29,22 +35,24 @@ ActiveRecord::Schema.define(version: 20220128183109) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "prices", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "purchase_price"
-    t.integer  "sale_price"
+  create_table "products", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "provider_id"
+    t.integer  "shop_id"
+    t.float    "purchase_price"
+    t.string   "image"
+    t.string   "code"
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "initialstock"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
-  add_index "prices", ["product_id"], name: "index_prices_on_product_id"
-
-  create_table "products", force: :cascade do |t|
-    t.string   "code"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "products", ["category_id"], name: "index_products_on_category_id"
+  add_index "products", ["provider_id"], name: "index_products_on_provider_id"
+  add_index "products", ["shop_id"], name: "index_products_on_shop_id"
 
   create_table "providers", force: :cascade do |t|
     t.string   "name"
@@ -54,20 +62,6 @@ ActiveRecord::Schema.define(version: 20220128183109) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  create_table "purchases", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "shop_id"
-    t.integer  "stock"
-    t.integer  "initial_existence"
-    t.integer  "purchase_price"
-    t.integer  "sale_price"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
-  add_index "purchases", ["shop_id"], name: "index_purchases_on_shop_id"
 
   create_table "shops", force: :cascade do |t|
     t.string   "name"

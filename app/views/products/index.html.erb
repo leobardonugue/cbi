@@ -1,16 +1,22 @@
+
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Products</h1> 
+<h1>Listing Products</h1>
 <br>
 <%= link_to 'New Product', new_product_path , :style=>"text-decoration: none; color: white; margin-bottom: 20px", :class=>"btn btn-primary"%>
-
 
 <table class="table table-dark table-striped table-hover">
   <thead>
     <tr style="text-align: center;">
       <th>Code</th>
       <th>Name</th>
+      <th>Shop</th>
+      <th>Purchase Price</th>
+      <th>Price</th>
+      <th>Initial Stock</th>
+      <th>Category</th>
+      <th>Provider</th>
       <th colspan="3">Options</th>
     </tr>
   </thead>
@@ -18,13 +24,24 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.code %></td>
+        <td><%= product.code %></td>        
         <td><%= product.name %></td>
-        <td><%= link_to 'Show', product ,  :style=>"text-decoration: none; color: white;" , :class=>"btn btn-primary"%></td>
-        <td><%= link_to 'Edit', edit_product_path(product) , :style=>"text-decoration: none; color: white;" , :class=>"btn btn-warning" %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, :style=>"text-decoration: none; color: white;", :class=>"btn btn-danger" %></td>
+        <td><%= product.shop.name%></td>
+        <td><%= product.purchase_price %></td>
+        <td><%= product.price %></td>
+        <td><%= product.initialstock%></td>
+        <td><%= product.category.category%></td>
+        <td><%= product.provider.name%></td>
+        <td><%= link_to 'Show', product , :style=>"text-decoration: none; color: white;" , :class=>"btn btn-primary"%></td>
+        <td><%= link_to 'Edit', edit_product_path(product) , :style=>"text-decoration: none; color: white;" , :class=>"btn btn-warning"%></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } , :style=>"text-decoration: none; color: white;", :class=>"btn btn-danger"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+
+<br>
+
 </div>
