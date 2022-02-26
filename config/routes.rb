@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :saledetails
+  resources :sales
   resources :products
   resources :products
   resources :categories

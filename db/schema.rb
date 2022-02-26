@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220203184409) do
+ActiveRecord::Schema.define(version: 20220205042018) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
@@ -62,6 +62,29 @@ ActiveRecord::Schema.define(version: 20220203184409) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "saledetails", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "saledetails", ["product_id"], name: "index_saledetails_on_product_id"
+  add_index "saledetails", ["sale_id"], name: "index_saledetails_on_sale_id"
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float    "import"
+  end
+
+  add_index "sales", ["product_id"], name: "index_sales_on_product_id"
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
 
   create_table "shops", force: :cascade do |t|
     t.string   "name"
